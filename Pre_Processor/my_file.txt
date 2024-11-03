@@ -1,5 +1,15 @@
-My name is Umar.
-I am 22.
-I am 3rd year Software dev student.
-I am currently working on my Final year Project.
-The project is about a pre processing tool for Sikraken.
+variable1
+count
+_temp
+MAX_VALUE
+myVariable123
+calculateSum
+x
+__hiddenVar
+value_2
+arrayList
+
+2ndVariable 
+int 
+#define
+var-name 

@@ -12,20 +12,9 @@ L   [a-zA-Z_]
 A   [a-zA-Z_0-9]
 H   [a-fA-F0-9]
 HP  (0[xX])
-E   ([Ee][+-]?{D}+)
-P   ([Pp][+-]?{D}+)
-FS  (f|F|l|L)
 IS  (((u|U)(l|L|ll|LL)?)|((l|L|ll|LL)(u|U)?))
-CP  (u|U|L)
-SP  (u8|u|U|L)
-ES  (\\(['"\?\\abfnrtv]|[0-7]{1,3}|x[a-fA-F0-9]+))
-WS  [ \t\v\n\f]
 
 %%
-
-%%
- /*note to self: yytext points to first character of matched string. If we write yytext[1] we will get second letter in that string.
- yytext is a temporary variable it gets overwritten when the next pattern is matched. To keep it needs to be saved somehow*/
 {L}{A}*                     {yylval.id = strdup_safe(yytext);
                              if (is_typedef_name(yylval.id)) {
                                 //if (debugMode) printf("Debug: returning the typedef %s from lexer\n", yytext);
@@ -33,13 +22,12 @@ WS  [ \t\v\n\f]
                              }
                              return IDENTIFIER;
                             }
-
 %%
 
 int main(int argc, char *argv[]) {
-    if (argc > 1) {         // argc suggest number of arguments passed
-        yyin = fopen(argv[1], "r"); //argv is pointer to the file passed as argument. argv[0] is the file with main program itself.
-        if (!yyin) {//note yyin is a function of type FILE* and points to input file and if it is not declare flex automatically decalres it and points it to console (stdin) thatswhy i think we get an input option without writting any function.
+    if (argc > 1) {
+        yyin = fopen(argv[1], "r");
+        if (!yyin) {
             perror("Failed to open file");
             return 1;
         }
@@ -53,4 +41,6 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-
+void wrap_integer_constants(char *wrapper, char *input, char **output) {
+    // This function is now left as a placeholder.
+}
