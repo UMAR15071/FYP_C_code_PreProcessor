@@ -322,9 +322,6 @@ void yyfree ( void *  );
 #define YY_AT_BOL() (YY_CURRENT_BUFFER_LVALUE->yy_at_bol)
 
 /* Begin user sect3 */
-
-#define yywrap() (/*CONSTCOND*/1)
-#define YY_SKIP_YYWRAP
 typedef flex_uint8_t YY_CHAR;
 
 FILE *yyin = NULL, *yyout = NULL;
@@ -363,9 +360,9 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[10] =
+static const flex_int16_t yy_accept[8] =
     {   0,
-        0,    0,    0,    0,    3,    2,    1,    1,    0
+        0,    0,    3,    2,    1,    1,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -405,26 +402,24 @@ static const YY_CHAR yy_meta[4] =
         1,    2,    2
     } ;
 
-static const flex_int16_t yy_base[12] =
+static const flex_int16_t yy_base[10] =
     {   0,
-        3,    2,    0,    0,    4,    7,    0,    0,    7,    0,
-        1
+        3,    2,    4,    7,    0,    0,    7,    0,    1
     } ;
 
-static const flex_int16_t yy_def[12] =
+static const flex_int16_t yy_def[10] =
     {   0,
-       10,   10,   10,   10,    9,    9,   11,   11,    0,    9,
-        9
+        8,    8,    7,    7,    9,    9,    0,    7,    7
     } ;
 
 static const flex_int16_t yy_nxt[11] =
     {   0,
-        6,    6,    8,    9,    7,    7,    5,    9,    9,    9
+        4,    4,    6,    7,    5,    5,    3,    7,    7,    7
     } ;
 
 static const flex_int16_t yy_chk[11] =
     {   0,
-       10,   10,   11,    5,    2,    1,    9,    9,    9,    9
+        8,    8,    9,    3,    2,    1,    7,    7,    7,    7
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -441,16 +436,14 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "PaternTest.l"
-#line 2 "PaternTest.l"
-#include <stdio.h>
-extern int is_typedef_name(char*);
-#line 449 "lex.yy.c"
-
-#line 451 "lex.yy.c"
+#line 1 "lexer.l"
+#line 2 "lexer.l"
+#include <stdio.h>    
+#include "parser.tab.h"   
+#line 444 "lex.yy.c"
+#line 445 "lex.yy.c"
 
 #define INITIAL 0
-#define ATTRIBUTE 1
 
 #ifndef YY_NO_UNISTD_H
 /* Special case for "unistd.h", since it is non-ANSI. We include it way
@@ -665,9 +658,10 @@ YY_DECL
 		}
 
 	{
-#line 17 "PaternTest.l"
+#line 9 "lexer.l"
 
-#line 671 "lex.yy.c"
+
+#line 665 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -694,7 +688,7 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 10 )
+				if ( yy_current_state >= 8 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -726,22 +720,16 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 18 "PaternTest.l"
-{
-                             if (is_typedef_name(yytext)) {
-                                printf("Reserved keyword");
-                             }
-                             printf("identifier");
-                            }
+#line 11 "lexer.l"
+{ yylval.id = strdup(yytext); return IDENTIFIER; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 24 "PaternTest.l"
+#line 13 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 743 "lex.yy.c"
+#line 732 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
-case YY_STATE_EOF(ATTRIBUTE):
 	yyterminate();
 
 	case YY_END_OF_BUFFER:
@@ -1037,7 +1025,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 10 )
+			if ( yy_current_state >= 8 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1065,11 +1053,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 10 )
+		if ( yy_current_state >= 8 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 9);
+	yy_is_jam = (yy_current_state == 7);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1745,27 +1733,9 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 24 "PaternTest.l"
+#line 13 "lexer.l"
 
 
-int main(int argc, char *argv[]) {
-    if (argc > 1) {
-        yyin = fopen(argv[1], "r");
-        if (!yyin) {
-            perror("Failed to open file");
-            return 1;
-        }
-    } else {
-        fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
-        return 1;
-    }
-
-    yylex();
-    fclose(yyin);
-    return 0;
-}
-
-void wrap_integer_constants(char *wrapper, char *input, char **output) {
-    // This function is now left as a placeholder.
-}
+// Include the implementation for yylex
+int yylex(void);
 

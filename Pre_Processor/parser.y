@@ -1,16 +1,31 @@
 %{
-
-#include "handle_typedefs.c"
-void yyerror(const char*);
-    
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+void yyerror(const char* msg); // Function prototype for error handling
 %}
 
-%token <id> IDENTIFIER TYPEDEF_NAME I_CONSTANT F_CONSTANT ENUMERATION_CONSTANT STRING_LITERAL
+%token<identifier> IDENTIFIER
 
 %%
-primary_expression
-	: IDENTIFIER
-		{$$ = to_prolog_var($1);
-		 free($1);
-		}
+
+// Define a simple rule for starting with IDENTIFIER
+start:
+    IDENTIFIER {
+        printf("Identifier parsed: %s\n", $1); // Output the parsed identifier
+    }
+    ;
+
 %%
+
+// Prototypes for the lexer function
+int yylex(void); // Declare the lexer function
+
+int main(int argc, char *argv[]) {
+    yyparse(); // Start parsing
+    return 0;
+}
+
+void yyerror(const char* msg) {
+    fprintf(stderr, "Error: %s\n", msg);
+}

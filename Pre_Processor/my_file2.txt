@@ -1,5 +1,0 @@
-My name is Ali.
-I am 24.
-I am 4th year Software dev student.
-I am currently working on my Final year Project.
-The project is about a pre processing tool for Sikraken.
