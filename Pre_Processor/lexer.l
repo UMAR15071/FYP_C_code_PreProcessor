@@ -1,16 +1,17 @@
 %{
-#include <stdio.h>    
-#include "parser.tab.h"   
+#include <stdio.h>  
+#include <stdlib.h>
+#include "parser.tab.h"
+extern int yyerror(const char *s);  // Declare yyerror()
+
 %}
 
-L   [a-zA-Z_]
-A   [a-zA-Z_0-9]
+%%
+
+[a-z]           { return CHARACTER; }      // Return CHARACTER for lowercase letters
+[0-9]+          { return NUMBER; }         // Return NUMBER for sequences of digits
+[ \t\n]+        { /* Ignore whitespace */ } // Ignore whitespace, tabs, and newlines
+.               { yyerror("Unknown token!"); } // Call yyerror for unknown tokens
 
 %%
 
-{L}{A}*     { yylval.id = strdup(yytext); return IDENTIFIER; }
-
-%%
-
-// Include the implementation for yylex
-int yylex(void);

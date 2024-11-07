@@ -1,31 +1,31 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-void yyerror(const char* msg); // Function prototype for error handling
+extern int yylex();  // Declare yylex()
+int yyerror(char *s);
 %}
 
-%token<identifier> IDENTIFIER
+%token CHARACTER NUMBER
 
 %%
 
-// Define a simple rule for starting with IDENTIFIER
-start:
-    IDENTIFIER {
-        printf("Identifier parsed: %s\n", $1); // Output the parsed identifier
-    }
-    ;
+program : num 
+        | letter
+        ;
+
+num : NUMBER {
+    printf("This is a number\n");
+}
+
+letter : CHARACTER {
+    printf("This is a character\n");
+}
 
 %%
 
-// Prototypes for the lexer function
-int yylex(void); // Declare the lexer function
-
-int main(int argc, char *argv[]) {
-    yyparse(); // Start parsing
+int yyerror(char *s) {
+    fprintf(stderr, "%s\n", s);
     return 0;
 }
 
-void yyerror(const char* msg) {
-    fprintf(stderr, "Error: %s\n", msg);
-}
+
