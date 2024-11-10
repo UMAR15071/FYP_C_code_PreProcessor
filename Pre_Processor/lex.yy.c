@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 5
-#define YY_END_OF_BUFFER 6
+#define YY_NUM_RULES 6
+#define YY_END_OF_BUFFER 7
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -360,10 +360,11 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[12] =
+static const flex_int16_t yy_accept[27] =
     {   0,
-        0,    0,    6,    4,    3,    3,    2,    1,    3,    2,
-        0
+        0,    0,    7,    5,    4,    4,    5,    4,    0,    0,
+        0,    0,    0,    0,    0,    0,    0,    1,    0,    2,
+        0,    3,    1,    2,    3,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -372,16 +373,16 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    2,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    4,    4,    4,
-        4,    4,    4,    4,    4,    4,    4,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    5,    5,    5,    5,
+        1,    1,    4,    1,    4,    5,    1,    6,    7,    7,
+        7,    7,    7,    7,    7,    7,    7,    1,    1,    1,
+        1,    1,    1,    1,    8,    8,    8,    8,    8,    9,
+        1,    1,    1,    1,    1,   10,    1,    1,    1,   11,
+        1,    1,    1,    1,    1,    1,    1,   12,    1,    1,
+        1,    1,    1,    1,    1,    1,    8,    8,    8,    8,
 
-        5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
-        5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
-        5,    5,    1,    1,    1,    1,    1,    1,    1,    1,
+        8,   13,    1,    1,    1,    1,    1,   14,    1,    1,
+        1,   11,    1,    1,    1,    1,    1,    1,    1,   12,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -398,33 +399,52 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[6] =
+static const YY_CHAR yy_meta[15] =
     {   0,
-        1,    2,    2,    3,    1
+        1,    1,    1,    2,    3,    4,    4,    5,    5,    1,
+        1,    1,    5,    1
     } ;
 
-static const flex_int16_t yy_base[14] =
+static const flex_int16_t yy_base[33] =
     {   0,
-        0,    0,    8,    9,    0,    0,    0,    9,    0,    0,
-        9,    5,    3
+        0,    5,   45,   67,    2,    7,   32,   10,   36,    0,
+        9,   25,   24,   28,   19,   15,    9,   15,   11,   24,
+       20,   33,   67,   67,   67,   67,   47,   50,   52,   56,
+       59,   62
     } ;
 
-static const flex_int16_t yy_def[14] =
+static const flex_int16_t yy_def[33] =
     {   0,
-       11,    1,   11,   11,   12,   12,   13,   11,   12,   13,
-        0,   11,   11
+       27,   27,   26,   26,   26,   26,   26,   26,   28,   29,
+       28,   29,   29,   30,   31,   32,   26,   26,   26,   26,
+       26,   26,   26,   26,   26,    0,   26,   26,   26,   26,
+       26,   26
     } ;
 
-static const flex_int16_t yy_nxt[15] =
+static const flex_int16_t yy_nxt[82] =
     {   0,
-        4,    5,    6,    7,    8,   10,    9,   11,    3,   11,
-       11,   11,   11,   11
+       26,    5,    6,    8,    8,    7,    5,    6,    8,    8,
+        7,    8,    8,   13,   18,   18,   20,   20,   21,   14,
+       18,   18,   19,   23,   23,   22,   22,   23,   23,   20,
+       20,   17,   24,   24,   16,   15,   24,   24,   22,   22,
+       10,   25,   25,    9,   26,   25,   25,    4,    4,    4,
+        4,    4,   11,   11,   11,   12,   12,   18,   26,   18,
+       20,   26,   20,   22,   26,   22,    3,   26,   26,   26,
+       26,   26,   26,   26,   26,   26,   26,   26,   26,   26,
+       26
     } ;
 
-static const flex_int16_t yy_chk[15] =
+static const flex_int16_t yy_chk[82] =
     {   0,
-        1,    1,    1,    1,    1,   13,   12,    3,   11,   11,
-       11,   11,   11,   11
+        0,    1,    1,    5,    5,    1,    2,    2,    6,    6,
+        2,    8,    8,   11,   17,   17,   19,   19,   16,   11,
+       18,   18,   15,   18,   18,   21,   21,   18,   18,   20,
+       20,   14,   20,   20,   13,   12,   20,   20,   22,   22,
+        9,   22,   22,    7,    3,   22,   22,   27,   27,   27,
+       27,   27,   28,   28,   28,   29,   29,   30,    0,   30,
+       31,    0,   31,   32,    0,   32,   26,   26,   26,   26,
+       26,   26,   26,   26,   26,   26,   26,   26,   26,   26,
+       26
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -445,11 +465,14 @@ char *yytext;
 #line 2 "lexer.l"
 #include <stdio.h>  
 #include <stdlib.h>
+#include <string.h>
 #include "parser.tab.h"
 extern int yyerror(const char *s);  // Declare yyerror()
+void wrap_floating_point_constants(char *, char *, char **);
+void add_missing_zero(char *, char **);
 
-#line 452 "lex.yy.c"
-#line 453 "lex.yy.c"
+#line 475 "lex.yy.c"
+#line 476 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -666,10 +689,10 @@ YY_DECL
 		}
 
 	{
-#line 9 "lexer.l"
+#line 18 "lexer.l"
 
 
-#line 673 "lex.yy.c"
+#line 696 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -696,13 +719,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 12 )
+				if ( yy_current_state >= 27 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 9 );
+		while ( yy_base[yy_current_state] != 67 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -728,31 +751,44 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 11 "lexer.l"
-{ return CHARACTER; }      // Return CHARACTER for lowercase letters
+#line 20 "lexer.l"
+{wrap_floating_point_constants("hexadecimal", yytext, &yylval.id);  //Hexadecimal floating-point constants: will fail parser in ECLiPSe
+                             return F_CONSTANT;
+                            }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 12 "lexer.l"
-{ return NUMBER; }         // Return NUMBER for sequences of digits
+#line 23 "lexer.l"
+{wrap_floating_point_constants("hexadecimal", yytext, &yylval.id);    //Hexadecimal floating-point constants with a fractional part.: will fail parser in ECLiPSe
+                             return F_CONSTANT;
+                            }
 	YY_BREAK
 case 3:
-/* rule 3 can match eol */
 YY_RULE_SETUP
-#line 13 "lexer.l"
-{ /* Ignore whitespace */ } // Ignore whitespace, tabs, and newlines
+#line 26 "lexer.l"
+{char* added_0;
+                             add_missing_zero(yytext, &added_0);
+                             wrap_floating_point_constants("hexadecimal", added_0, &yylval.id);   //Hexadecimal floating-point constants with digits before the decimal point, but none after. : will fail parser in ECLiPSe
+                             return F_CONSTANT;
+                            }
 	YY_BREAK
 case 4:
+/* rule 4 can match eol */
 YY_RULE_SETUP
-#line 14 "lexer.l"
-{ yyerror("Unknown token!"); } // Call yyerror for unknown tokens
+#line 31 "lexer.l"
+{ /* Ignore whitespace */ } // Ignore whitespace, tabs, and newlines
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 16 "lexer.l"
+#line 32 "lexer.l"
+{ yyerror("Unknown token!"); } // Call yyerror for unknown tokens
+	YY_BREAK
+case 6:
+YY_RULE_SETUP
+#line 34 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 756 "lex.yy.c"
+#line 792 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1049,7 +1085,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 12 )
+			if ( yy_current_state >= 27 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1077,11 +1113,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 12 )
+		if ( yy_current_state >= 27 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 11);
+	yy_is_jam = (yy_current_state == 26);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1757,7 +1793,59 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 16 "lexer.l"
+#line 34 "lexer.l"
 
 
+void wrap_floating_point_constants(char * wrapper, char * input, char ** output) {
+    int current = strlen(input)-1;
+    int has_f = 0, has_l = 0, is_d = 0;
+    int has_suffix = 1;
+    switch (input[current]) {
+        case 'f':
+        case 'F':
+            has_f = 1;
+            break;
+        case 'l':
+        case 'L':
+            has_l = 1;
+            break;
+        default:
+            is_d = 1;
+            has_suffix = 0;
+    }
+    if (has_suffix) current--;
+    int has_wrapper = strcmp(wrapper, "");
+    //calculating the length of the result: length of the wrapper + 2 parentheses + length of the prefix, the suffix, the parenthesis
+    int size = (has_wrapper ? strlen(wrapper) + 2 : 0) + current+1 + 1 + is_d*strlen("double") + has_f*strlen("float") + has_l*strlen("long_double") + (has_f || has_l || is_d ? 2 : 0);
+    *output = (char *)malloc(size);
+    char format_string[100];
+    if (has_wrapper) strcpy(format_string, "%s("); //starts with the floating point kind wrapper
+    else strcpy(format_string, "");
+    if (is_d)
+        strcat(format_string, "double(%.*s)");      //double is the default type for floating points literals
+    else if (has_f) 
+        strcat(format_string, "float(%.*s)");
+    else if (has_l) 
+        strcat(format_string, "long_double(%.*s)");
+    if (has_wrapper) {
+        strcat(format_string, ")"); //adds the wrapper end parenthesis
+        snprintf(*output, size, format_string, wrapper, current + 1, input);
+    } else {
+        snprintf(*output, size, format_string, current + 1, input);
+    }
+}
 
+//float has no digit after decimal point: need to add 0
+void add_missing_zero(char * input, char ** output) {
+    size_t len = strlen(input);
+    *output = (char*)malloc(len + 1 + 1); // +1 for extra '0'
+    strcpy(*output, input);
+    char* decimal_point = strchr(*output, '.');
+    char* suffix = strpbrk(decimal_point, "eElL"); //returns pointer to first occurrence of character
+    if (suffix == NULL) {// No suffix, so it's the end of the string
+        suffix = *output + strlen(*output);
+    }
+    size_t decimal_pos = decimal_point - *output;
+    memmove(decimal_point + 2, decimal_point + 1, len - decimal_pos); //copy everything after the decimal point to +1 location
+    (*output)[decimal_pos + 1] = '0';    //add the 'missing' 0
+}
