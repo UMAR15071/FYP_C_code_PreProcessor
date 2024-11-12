@@ -74,8 +74,11 @@
 #include <string.h>
 extern int yylex();  // Declare yylex()
 int yyerror(char *s);
+extern char *yytext;
 
-#line 79 "parser.tab.c"
+long int TARGET_LONG_MAX = 2147483647L; 
+
+#line 82 "parser.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -497,7 +500,7 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    23,    23,    24,    25
+       0,    30,    30,    33,    36
 };
 #endif
 
@@ -1053,14 +1056,32 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
+  case 2: /* constant: I_CONSTANT  */
+#line 30 "parser.y"
+                                    {       printf("Parsed I_CONSTANT: %s\n", yytext);
+                                    return I_CONSTANT;
+                            }
+#line 1065 "parser.tab.c"
+    break;
+
   case 3: /* constant: F_CONSTANT  */
-#line 24 "parser.y"
-                            {printf("Floating successfully parsed");}
-#line 1060 "parser.tab.c"
+#line 33 "parser.y"
+                                {   printf("Parsed F_CONSTANT: %s\n", yytext);
+                                return F_CONSTANT;
+                            }
+#line 1073 "parser.tab.c"
+    break;
+
+  case 4: /* constant: ENUMERATION_CONSTANT  */
+#line 36 "parser.y"
+                                {   printf("Parsed ENUMERATION_CONSTANT: %s\n", yytext);
+                                return ENUMERATION_CONSTANT;
+                            }
+#line 1081 "parser.tab.c"
     break;
 
 
-#line 1064 "parser.tab.c"
+#line 1085 "parser.tab.c"
 
       default: break;
     }
@@ -1253,7 +1274,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 27 "parser.y"
+#line 40 "parser.y"
 
 
 int yyerror(char *s) {
