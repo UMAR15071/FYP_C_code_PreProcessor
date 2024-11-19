@@ -37,43 +37,64 @@ IS  (((u|U)(l|L|ll|LL)?)|((l|L|ll|LL)(u|U)?))
 ES  (\\(['"\?\\abfnrtv]|[0-7]{1,3}|x[a-fA-F0-9]+))
 CP  (u|U|L)
 WS  [ \t\v\n\f]
+E   ([Ee][+-]?{D}+)
 
 
 %%
 
-{HP}{H}+{IS}?				{wrap_integer_constants("16'", &yytext[2], &yylval.id);     //hexadecimal integer
+{HP}{H}+{IS}?				{printf("Processing1: %s\n", yytext);
+                             wrap_integer_constants("16'", &yytext[2], &yylval.id);     //hexadecimal integer
                              return I_CONSTANT;
                             }
-{NZ}{D}*{IS}?				{wrap_integer_constants("", yytext, &yylval.id);            //decimal integer
+{NZ}{D}*{IS}?				{printf("Processing2: %s\n", yytext);
+                             wrap_integer_constants("", yytext, &yylval.id);            //decimal integer
                              return I_CONSTANT;
                             }
                             
-"0"{O}*{IS}?				{if (isdigit(yytext[1])) wrap_integer_constants("8'", &yytext[1], &yylval.id);  //octal integer 
+"0"{O}*{IS}?				{printf("Processing3: %s\n", yytext);
+                             if (isdigit(yytext[1])) wrap_integer_constants("8'", &yytext[1], &yylval.id);  //octal integer 
                              else { //the second char after 0 is not a digit (it's /0, ofr an IS (u|U)(l|L|ll|LL) char), so it's just the constant 0, rather than a true octal 
                                 yylval.id = (char*)malloc(7);
                                 strcpy(yylval.id, "int(0)");    
                              }
                              return I_CONSTANT;
                             }
-{CP}?"'"([^'\\\n]|{ES})+"'"	{yylval.id = strdup_safe(yytext); return I_CONSTANT;}   //single characters
+{CP}?"'"([^'\\\n]|{ES})+"'"	{
+                             printf("Processing4: %s\n", yytext);
+                             yylval.id = strdup_safe(yytext); return I_CONSTANT;}   //single characters
 
-{HP}{H}+{P}{FS}?			{printf("Processing: %s\n", yytext);
-                            wrap_floating_point_constants("hexadecimal", yytext, &yylval.id);  //Hexadecimal floating-point constants: will fail parser in ECLiPSe
-                             return F_CONSTANT;
+{D}+{E}{FS}?				{   printf("Processing1: %s\n", yytext);
+                                wrap_floating_point_constants("", yytext, &yylval.id);     //Decimal floating-point constants with an exponent.
+                                return F_CONSTANT;
                             }
-{HP}{H}*"."{H}+{P}{FS}?		{printf("Processing: %s\n", yytext);
-                             wrap_floating_point_constants("hexadecimal", yytext, &yylval.id);    //Hexadecimal floating-point constants with a fractional part.: will fail parser in ECLiPSe
-                             return F_CONSTANT;
+{D}*"."{D}+{E}?{FS}?		{   printf("Processing2: %s\n", yytext);
+                                wrap_floating_point_constants("", yytext, &yylval.id);     //Decimal floating-point constants with a fractional part.
+                                return F_CONSTANT;
+                            }                           
+{D}+"."{E}?{FS}?			{   printf("Processing3: %s\n", yytext);
+                                char* added_0;
+                                add_missing_zero(yytext, &added_0);
+                                wrap_floating_point_constants("", added_0, &yylval.id);         //Decimal floating-point constants with a fractional part.
+                                return F_CONSTANT;
                             }
-{HP}{H}+"."{P}{FS}?			{printf("Processing: %s\n", yytext);
-                             char* added_0;
-                             add_missing_zero(yytext, &added_0);
-                             wrap_floating_point_constants("hexadecimal", added_0, &yylval.id);   //Hexadecimal floating-point constants with digits before the decimal point, but none after. : will fail parser in ECLiPSe
-                             return F_CONSTANT;
+{HP}{H}+{P}{FS}?			{   printf("Processing4: %s\n", yytext);
+                                wrap_floating_point_constants("hexadecimal", yytext, &yylval.id);  //Hexadecimal floating-point constants: will fail parser in ECLiPSe
+                                return F_CONSTANT;
+                            }
+{HP}{H}*"."{H}+{P}{FS}?		{   printf("Processing5: %s\n", yytext);
+                                wrap_floating_point_constants("hexadecimal", yytext, &yylval.id);    //Hexadecimal floating-point constants with a fractional part.: will fail parser in ECLiPSe
+                                return F_CONSTANT;
+                            }
+{HP}{H}+"."{P}{FS}?			{   printf("Processing6: %s\n", yytext);
+                                char* added_0;
+                                add_missing_zero(yytext, &added_0);
+                                wrap_floating_point_constants("hexadecimal", added_0, &yylval.id);   //Hexadecimal floating-point constants with digits before the decimal point, but none after. : will fail parser in ECLiPSe
+                                return F_CONSTANT;
                             }
 {WS}+				        { /* whitespaces (including new lines) separate tokens */ }
-.                           {  } 
 
+"-"					        { return '-'; }
+.                           {  } 
 %%
 
 
