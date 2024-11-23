@@ -122,11 +122,16 @@ extern int yydebug;
     RETURN = 323,                  /* RETURN  */
     ALIGNAS = 324,                 /* ALIGNAS  */
     ALIGNOF = 325,                 /* ALIGNOF  */
-    ATOMIC = 326,                  /* ATOMIC  */
-    GENERIC = 327,                 /* GENERIC  */
-    NORETURN = 328,                /* NORETURN  */
-    STATIC_ASSERT = 329,           /* STATIC_ASSERT  */
-    THREAD_LOCAL = 330             /* THREAD_LOCAL  */
+    ATOMIC_SPECIFIER = 326,        /* ATOMIC_SPECIFIER  */
+    ATOMIC = 327,                  /* ATOMIC  */
+    GENERIC = 328,                 /* GENERIC  */
+    NORETURN = 329,                /* NORETURN  */
+    STATIC_ASSERT = 330,           /* STATIC_ASSERT  */
+    THREAD_LOCAL = 331,            /* THREAD_LOCAL  */
+    INT128 = 332,                  /* INT128  */
+    FLOAT128 = 333,                /* FLOAT128  */
+    VA_LIST = 334,                 /* VA_LIST  */
+    LOWER_THAN_ELSE = 335          /* LOWER_THAN_ELSE  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -135,16 +140,20 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 16 "parser.y"
+#line 63 "parser.y"
 
-    char* id;
-    struct for_stmt {
-        char *init;
-        char *cond;
-        char *update;
+	char* id;
+	struct for_stmt {
+        char *init;				//the first part of a for statement: the initialisations
+        char *cond;				//the second part of a for statement: the condition
+        char *update;			//the third part of a for statement: the update
     } for_stmt_type;
+	struct declarator {
+		char *full;				//the full declarator
+		char *ptr_declarator;	//only the declarator after pointer declarations
+	} declarator_type;
 
-#line 148 "parser.tab.h"
+#line 157 "parser.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
